@@ -1,0 +1,47 @@
+append line:(1-*) local identifier:"advanced"
+import c#
+import horizen-executor
+import advanced
+import rblx
+
+define is "pss"
+
+if net not exist do
+   new net
+   net is
+      global net
+      for connection do
+         net connect
+      end
+   end
+end
+
+local connection
+local game
+local player
+local executor
+
+connection is
+   using executor:id
+      new net <executor:id> <game> parameter:data=true parameter:stack=64
+   end
+end
+game is
+   rblx:workspace.placeId
+end
+player is
+   rblx:workspace.playerId
+end
+executor is
+   using horizen-executor
+      fetch local window parameter:data=true parameter:tunnel=new?if:full parameter:to=pss
+   end
+end
+
+on scrypt:start do
+   net:new rquire
+      get game
+      get player
+      get executor
+   end
+end
